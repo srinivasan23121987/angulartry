@@ -1,4 +1,4 @@
-<form #f="ngForm" (ngSubmit)="submitForm(f)">
+<!--<form #f="ngForm" (ngSubmit)="submitForm(f)">
   <div class="form-group">
     <label for="firstName"></label>
     <input required ngModel name="firstName" pattern="BANANA"  minlength="6" maxlength="10" #firstName="ngModel" (change)="log(firstName)" class="form-control" id="firstName"
@@ -20,5 +20,42 @@
     <textarea ngModel name="message" #message="ngModel" class="form-control" name="" id="comment" cols="30" rows="10"></textarea>
   </div>
   <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
-  <!-- <div class="alert alert-danger"></div> -->
-</form>
+  <!-- <div class="alert alert-danger"></div> 
+</form>-->
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Contact Form</div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12">
+
+          <form [formGroup]="form">
+            <div formGroupName="account">
+              <!--<div *ngIf="form.errors" class="alert alert-danger">
+                Invalid username/Password
+              </div>-->
+              <div class="form-group">
+                <label for="username">username</label>
+                <!--<div *ngIf="username.pending">checking for uniqueness</div>-->
+                <input formControlName="username" type="text" name="username" class="form-control">
+
+                <div class="alert alert-danger" *ngIf="username.invalid && username.touched">
+                  <div *ngIf="username.errors.required"> username Required</div>
+                  <div *ngIf="username.errors.minlength"> username minlength {{username.errors.minlength.requiredLength}} Required</div>
+                  <div *ngIf="username.errors.CannotContainSpace"> Should not contain spaces</div>
+                  <div *ngIf="username.errors.shouldbeUnique"> username already taken</div>
+                </div>
+              </div>
+
+              <div class="form-group"><label for="password">Password</label>
+              <input formControlName="password" type="password" name="password" class="form-control">
+              </div>
+              <button class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
