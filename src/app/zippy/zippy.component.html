@@ -1,0 +1,6 @@
+<div class="zippy">
+<button  class="accordion" [class.active]="isExpanded" (click)="toggle()">{{title}}</button>
+<div *ngIf="isExpanded">
+  <ng-content></ng-content>
+</div>
+</div>
