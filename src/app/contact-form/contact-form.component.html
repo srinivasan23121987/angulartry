@@ -37,7 +37,7 @@
               </div>-->
               <div class="form-group">
                 <label for="username">username</label>
-                <!--<div *ngIf="username.pending">checking for uniqueness</div>-->
+                <div *ngIf="username.pending">checking for uniqueness....</div>
                 <input formControlName="username" type="text" name="username" class="form-control">
 
                 <div class="alert alert-danger" *ngIf="username.invalid && username.touched">

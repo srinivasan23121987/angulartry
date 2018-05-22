@@ -9,7 +9,7 @@ import { UsernameValidators } from './username.validators';
 export class ContactFormComponent implements OnInit {
   form = new FormGroup({
     account: new FormGroup({
-      username: new FormControl('', [Validators.required, Validators.minLength(3), UsernameValidators.CannotContainSpace, UsernameValidators.shouldbeUnique]),
+      username: new FormControl('', [Validators.required, Validators.minLength(3), UsernameValidators.CannotContainSpace], UsernameValidators.shouldbeUnique),
       password: new FormControl()
     })
 
@@ -24,7 +24,7 @@ export class ContactFormComponent implements OnInit {
     // });
   }
   get username() {
-    return this.form.get('username');
+    return this.form.get('account.username');
   }
   submitForm(f) {
     console.log(f);

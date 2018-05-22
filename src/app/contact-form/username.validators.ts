@@ -9,7 +9,7 @@ export class UsernameValidators {
     static shouldbeUnique(control: AbstractControl): Promise<ValidationErrors | null> {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if (control.value as string == "Srinivasan") {
+                if (control.value === "Srinivasan") {
                     console.log("Srinivasan")
                     resolve({ "shouldbeUnique": true });
                 } else {
