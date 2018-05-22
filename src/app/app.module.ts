@@ -15,6 +15,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { NewFormComponent } from './new-form/new-form.component';
 import { PostsComponent } from './posts/posts.component';
 import { postsService } from './posts/posts.service';
+
 @NgModule({
   declarations: [
     AppComponent,
