@@ -1,3 +1,4 @@
+import { ErrorHandler } from '@angular/core';
 import { SummaryPipe } from './summary.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { NewFormComponent } from './new-form/new-form.component';
 import { PostsComponent } from './posts/posts.component';
 import { postsService } from './posts/posts.service';
+import { AppErrorHandler } from './app-error-handler';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,7 @@ import { postsService } from './posts/posts.service';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [CoursesService,postsService],
+  providers: [CoursesService, postsService, { provide: ErrorHandler, useClass: AppErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

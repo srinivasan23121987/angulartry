@@ -1,3 +1,4 @@
+import { ServiceNotUnavailable } from './../common/service-unavailable';
 import { Component, OnInit } from '@angular/core';
 import { postsService } from './posts.service';
 import { AppError } from "src/app/app-error";
@@ -20,10 +21,13 @@ export class PostsComponent implements OnInit {
     this.pservice.getAllPost().subscribe(response => {
       this.posts = response.json();
     }, (error: AppError) => {
+      console.log(error);
       if (error instanceof NotFoundError)
         alert('Unexpected error occured');
+      else if (error instanceof ServiceNotUnavailable)
+        alert('Service Unavailable');
       else
-        alert('Invalid error');
+        alert("Invalid Error")
     });
   }
   updatePost(post) {
@@ -35,14 +39,12 @@ export class PostsComponent implements OnInit {
     this.pservice.deleteSelPost(post).subscribe((response) => {
       let index = this.posts.indexOf(post);
       this.posts.splice(index, 1);
-      console.log(response.json());
+      // console.log(response.json());
     }, (error: AppError) => {
       if (error instanceof NotFoundError) {
         alert("Post not found");
       }
-      else {
-        alert("Invalid Error");
-      }
+      else throw error;
     })
   }
   createPost(title: HTMLInputElement) {
@@ -56,9 +58,7 @@ export class PostsComponent implements OnInit {
       if (error instanceof BadFetchError) {
         alert("Bad Fetch");
       }
-      else {
-        alert("Invalid Error");
-      }
+      else throw error;
     })
     console.log(title.value);
   }
